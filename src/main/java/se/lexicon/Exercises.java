@@ -60,7 +60,7 @@ public class Exercises {
         System.out.println(message);
         Predicate<Person> findId = person -> person.getId() == 123;
         Person result = storage.findOne(findId);
-        System.out.println("result = " + result);
+        System.out.println(result);
 
 
         //Write your code here
@@ -75,6 +75,12 @@ public class Exercises {
      */
     public static void exercise5(String message){
         System.out.println(message);
+        Predicate<Person> findId = person -> person.getId() == 456;
+        Function<Person, String> personToString = person -> person.getFirstName()
+                + " " + person.getLastName()
+                + " born " + person.getBirthDate();
+        String result = storage.findOneAndMapToString(findId,personToString);
+        System.out.println(result);
         //Write your code here
 
         System.out.println("----------------------");
