@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -126,6 +127,9 @@ public class Exercises {
      */
     public static void exercise8(String message){
         System.out.println(message);
+        Predicate<Person> filterName = person -> person.getFirstName().contains("Ulf");
+        Consumer<Person> iterate = person -> System.out.println(person.getFirstName() + " " + person.getLastName());
+        storage.findAndDo(filterName,iterate);
         //Write your code here
 
         System.out.println("----------------------");
