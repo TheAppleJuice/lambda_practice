@@ -4,7 +4,10 @@ import se.lexicon.data.DataStorage;
 import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Exercises {
@@ -42,6 +45,9 @@ public class Exercises {
      */
     public static void exercise3(String message){
         System.out.println(message);
+        Predicate<Person> filterBirthday = person -> person.getBirthDate().isAfter(LocalDate.parse("1999-12-31"));
+        List<Person> bornAfter = storage.findMany(filterBirthday);
+        bornAfter.forEach(person -> System.out.println(person));
         //Write your code here
 
         System.out.println("----------------------");
@@ -52,6 +58,11 @@ public class Exercises {
      */
     public static void exercise4(String message){
         System.out.println(message);
+        Predicate<Person> findId = person -> person.getId() == 123;
+        Person result = storage.findOne(findId);
+        System.out.println("result = " + result);
+
+
         //Write your code here
 
         System.out.println("----------------------");
