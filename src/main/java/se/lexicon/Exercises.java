@@ -76,7 +76,7 @@ public class Exercises {
     public static void exercise5(String message){
         System.out.println(message);
         Predicate<Person> findId = person -> person.getId() == 456;
-        Function<Person, String> personToString = person -> person.getFirstName()
+        Function<Person, String> personToString = person -> "Name: " + person.getFirstName()
                 + " " + person.getLastName()
                 + " born " + person.getBirthDate();
         String result = storage.findOneAndMapToString(findId,personToString);
@@ -91,6 +91,14 @@ public class Exercises {
      */
     public static void exercise6(String message){
         System.out.println(message);
+        Predicate<Person> filterNameE = person -> person.getFirstName().startsWith("E") && person.getGender() == Gender.MALE;
+
+        Function<Person, String> filterString = person -> person.toString();
+        List <String> result = storage.findManyAndMapEachToString(filterNameE,filterString);
+        System.out.print(result);
+
+
+
         //Write your code here
 
         System.out.println("----------------------");
