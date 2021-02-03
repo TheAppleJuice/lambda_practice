@@ -1,7 +1,10 @@
 package se.lexicon;
 
 import se.lexicon.data.DataStorage;
+import se.lexicon.model.Gender;
+import se.lexicon.model.Person;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class Exercises {
@@ -13,6 +16,9 @@ public class Exercises {
     */
     public static void exercise1(String message){
         System.out.println(message);
+        Predicate<Person> findErik = person -> person.getFirstName().equalsIgnoreCase("Erik");
+        List<Person> allEriks = storage.findMany(findErik);
+        allEriks.forEach(person -> System.out.println(person));
         //Write your code here
 
         System.out.println("----------------------");
@@ -23,6 +29,9 @@ public class Exercises {
      */
     public static void exercise2(String message){
         System.out.println(message);
+        Predicate<Person> filterFemale = person -> person.getGender() == Gender.FEMALE;
+        List<Person> femaleList = storage.findMany(filterFemale);
+        femaleList.forEach(person -> System.out.println(person));
         //Write your code here
 
         System.out.println("----------------------");
