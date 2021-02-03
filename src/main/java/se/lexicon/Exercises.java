@@ -5,6 +5,7 @@ import se.lexicon.model.Gender;
 import se.lexicon.model.Person;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -111,6 +112,10 @@ public class Exercises {
      */
     public static void exercise7(String message){
         System.out.println(message);
+        Predicate<Person> filterAge = person -> Period.between(person.getBirthDate(), LocalDate.now()).getYears() < 10;
+        Function<Person, String> filterString = person -> person.getFirstName() + " " + person.getLastName() + " " + Period.between(person.getBirthDate(), LocalDate.now()).getYears() + " years";
+        List <String> result = storage.findManyAndMapEachToString(filterAge,filterString);
+        result.forEach(p -> System.out.println(p));
         //Write your code here
 
         System.out.println("----------------------");
