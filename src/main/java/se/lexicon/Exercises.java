@@ -93,9 +93,10 @@ public class Exercises {
         System.out.println(message);
         Predicate<Person> filterNameE = person -> person.getFirstName().startsWith("E") && person.getGender() == Gender.MALE;
 
-        Function<Person, String> filterString = person -> person.toString();
+        Function<Person, String> filterString = person -> person.getFirstName() + " " + person.getLastName() + " \nGender: " + person.getGender();
         List <String> result = storage.findManyAndMapEachToString(filterNameE,filterString);
-        System.out.print(result);
+        result.forEach(p -> System.out.println(p));
+
 
 
 
