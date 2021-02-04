@@ -140,6 +140,10 @@ public class Exercises {
      */
     public static void exercise9(String message){
         System.out.println(message);
+        Predicate<Person> containName = person -> person.getFirstName().contains(person.getLastName());
+        Consumer<Person> iterate = person -> System.out.println(person.getFirstName() + " " + person.getLastName());
+        storage.findAndDo(containName,iterate);
+
         //Write your code here
 
         System.out.println("----------------------");
