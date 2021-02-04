@@ -97,6 +97,7 @@ public class Exercises {
         System.out.println(message);
         Predicate<Person> filterNameE = person -> person.getFirstName().startsWith("E") && person.getGender() == Gender.MALE;
 
+
         Function<Person, String> filterString = person -> person.getFirstName() + " " + person.getLastName() + " \nGender: " + person.getGender();
         List <String> result = storage.findManyAndMapEachToString(filterNameE,filterString);
         result.forEach(p -> System.out.println(p));
@@ -184,6 +185,10 @@ public class Exercises {
      */
     public static void exercise12(String message){
         System.out.println(message);
+        Predicate<Person> find1950 = person -> person.getBirthDate().isBefore(LocalDate.parse("1950-01-01"));
+        Comparator<Person> reverse = (p1, p2) -> p2.getBirthDate().compareTo(p1.getBirthDate());
+        List<Person> result = storage.findAndSort(find1950, reverse);
+        result.forEach(System.out::println);
         //Write your code here
 
         System.out.println("----------------------");
